@@ -20,3 +20,13 @@ test('previous and next buttons can be clicked', () =>
     fireEvent.click(nextButton);
     fireEvent.click(previousButton);
 });
+
+test('Get data gets called after pressing the buttons and returns Luke Skywalker', async () =>
+{
+    const {getByText} = render(<StarWarsCharacters/>);
+    const nextButton = getByText(/next/i);
+
+    fireEvent.click(nextButton);
+
+    wait(() => expect(getByText(/Luke Skywalker/i)));
+})
